@@ -16,9 +16,9 @@ export const Container = styled.ImageBackground.attrs({
 `;
 
 export const LHeader = styled.View`
-    margin-top: ${`${3.5 * Constants.statusBarHeight}px`};
+    margin-top: ${`${4 * Constants.statusBarHeight}px`};
     align-items: center;
-    flex-grow: 0.2;
+    flex: 0.4;
 `;
 
 export const LHeaderTitle = styled.Text`
@@ -28,11 +28,10 @@ export const LHeaderTitle = styled.Text`
 `;
 
 export const LButton = styled.TouchableOpacity`
-    flex-grow: 0;
     width: 226px;
     height: 66.96px;
     border-radius: 30px;
-    background-color: ${colors.color_two};
+    background-color: ${colors.color_four};
     align-items: center;
     justify-content: center;
 `;
@@ -40,14 +39,20 @@ export const LButton = styled.TouchableOpacity`
 export const LTitle = styled.Text`
     font-size: 36px;
     color: #ffffff;
+    font-family: 'sora-regular';
 `;
 
 export const CButton = styled.TouchableOpacity`
-    flex-grow: 0;
+    flex: 0.4;
     width: 226px;
-    height: 66.96px;
+    height: 67px;
     border-radius: 30px;
-    background-color: ${colors.color_two};
     align-items: center;
     justify-content: center;
+`;
+
+export const CTitle = styled.Text`
+    font-size: 30px;
+    color: #ffffff;
+    font-family: 'sora-regular';
 `;

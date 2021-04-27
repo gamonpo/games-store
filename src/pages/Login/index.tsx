@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { Container, LHeader, LHeaderTitle, LButton, LTitle } from './styles';
+import {
+    Container,
+    LHeader,
+    LHeaderTitle,
+    LButton,
+    LTitle,
+    CButton,
+    CTitle,
+} from './styles';
 
 const Login: React.FC = () => (
     <Container>
@@ -10,6 +18,10 @@ const Login: React.FC = () => (
         <LButton>
             <LTitle>Login</LTitle>
         </LButton>
+
+        <CButton>
+            <CTitle>Cadastrar</CTitle>
+        </CButton>
     </Container>
 );
 
