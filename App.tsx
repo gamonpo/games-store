@@ -13,6 +13,7 @@ const App: React.FC = () => {
     const [fontsLoaded] = useFonts({
         NothingYouCouldDo_400Regular,
         'sora-regular': require('./assets/fonts/Sora-Regular.ttf'),
+        'sora-thin': require('./assets/fonts/Sora-Thin.ttf'),
     });
 
     if (!fontsLoaded) {
