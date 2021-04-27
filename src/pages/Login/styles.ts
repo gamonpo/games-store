@@ -1,28 +1,28 @@
 import styled from 'styled-components/native';
-import Constants  from 'expo-constants';
+import Constants from 'expo-constants';
 import { Dimensions } from 'react-native';
 
 import img from '../../assets/background.png';
 
-import colors from '../../style/colors'
+import colors from '../../style/colors';
 
-const { width } = Dimensions.get('window')
+const { width } = Dimensions.get('window');
 
 export const Container = styled.ImageBackground.attrs({
-  source: img,
+    source: img,
 })`
     flex: 1;
     align-items: center;
 `;
 
 export const LHeader = styled.View`
-    margin-top: ${3.5 * Constants.statusBarHeight + 'px'};
+    margin-top: ${`${3.5 * Constants.statusBarHeight}px`};
     align-items: center;
     flex-grow: 0.2;
 `;
 
 export const LHeaderTitle = styled.Text`
-    font-size: ${0.1 * width + 'px'};
+    font-size: ${`${0.1 * width}px`};
     font-family: 'NothingYouCouldDo_400Regular';
     color: ${colors.color_three};
 `;
@@ -51,4 +51,3 @@ export const CButton = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
 `;
-
