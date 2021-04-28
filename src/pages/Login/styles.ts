@@ -17,6 +17,7 @@ export const Container = styled.ImageBackground.attrs({
 
 export const LHeader = styled.View`
     margin-top: ${`${4 * Constants.statusBarHeight}px`};
+    margin-bottom: ${`${2 * Constants.statusBarHeight}px`};
     align-items: center;
     flex: 0.4;
 `;
@@ -28,6 +29,7 @@ export const LHeaderTitle = styled.Text`
 `;
 
 export const DataGrid = styled.View`
+    flex: 0;
     align-items: center;
     justify-content: center;
 `;
@@ -49,7 +51,7 @@ export const Input = styled.TextInput`
     background-color: ${colors.color_input};
     border-bottom-width: 1px;
     border-bottom-color: ${colors.color_five};
-    margin: 5px;
+    margin: 15px;
 `;
 
 export const EnterButton = styled.TouchableOpacity`
@@ -60,7 +62,6 @@ export const EnterButton = styled.TouchableOpacity`
     background-color: ${colors.color_four};
     align-items: center;
     justify-content: center;
-    elevation: 20;
 `;
 
 export const EnterTitle = styled.Text`

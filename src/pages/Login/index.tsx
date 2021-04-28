@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
+
+import { ScrollView } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -16,30 +18,47 @@ import {
 
 const Login: React.FC = () => {
     const navigation = useNavigation();
+    const passwordInputRef = useRef<typeof Input>(null);
 
     return (
         <Container>
-            <LHeader>
-                <LHeaderTitle>Farmacare</LHeaderTitle>
-            </LHeader>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <LHeader>
+                    <LHeaderTitle>Farmacare</LHeaderTitle>
+                </LHeader>
 
-            <DataGrid>
-                <Component>
-                    <Label>Usuário</Label>
+                <DataGrid>
+                    <Component>
+                        <Label>Usuário</Label>
 
-                    <Input />
-                </Component>
+                        <Input
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            returnKeyType="next"
+                            onSubmitEditing={() => {
+                                passwordInputRef.current?.focus();
+                            }}
+                        />
+                    </Component>
 
-                <Component>
-                    <Label>Senha</Label>
+                    <Component>
+                        <Label>Senha</Label>
 
-                    <Input secureTextEntry />
-                </Component>
-            </DataGrid>
+                        <Input
+                            ref={passwordInputRef}
+                            secureTextEntry
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            returnKeyType="send"
+                        />
+                    </Component>
 
-            <EnterButton onPress={() => navigation.navigate('Search')}>
-                <EnterTitle>Entrar</EnterTitle>
-            </EnterButton>
+                    <EnterButton onPress={() => navigation.navigate('Search')}>
+                        <EnterTitle>Entrar</EnterTitle>
+                    </EnterButton>
+                </DataGrid>
+            </ScrollView>
         </Container>
     );
 };
