@@ -6,8 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 
 import {
     Container,
-    LHeader,
-    LHeaderTitle,
+    Header,
+    HeaderTitle,
     DataGrid,
     Component,
     Label,
@@ -23,9 +23,9 @@ const Login: React.FC = () => {
     return (
         <Container>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <LHeader>
-                    <LHeaderTitle>Farmacare</LHeaderTitle>
-                </LHeader>
+                <Header>
+                    <HeaderTitle>Farmacare</HeaderTitle>
+                </Header>
 
                 <DataGrid>
                     <Component>

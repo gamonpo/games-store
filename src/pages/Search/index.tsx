@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox';
 
 import {
     Container,
-    LHeader,
-    LHeaderTitle,
+    Header,
+    HeaderTitle,
     DataGrid,
     Component,
     Label,
@@ -16,18 +18,22 @@ import {
     IconImage,
 } from './styles';
 
-const Search: React.FC = () => {
-    const [checkbox, setCheckbox] = useState<boolean>();
+interface Marca {
+    name: string;
+}
 
-    const marcaInputRef = useRef<typeof Input>();
-    const enderecoInputRef = useRef<typeof Input>();
+const Search: React.FC = () => {
+    const navigation = useNavigation();
+
+    const [checkbox, setCheckbox] = useState<boolean>();
+    const [marca, setMarca] = useState<Marca>();
 
     return (
         <Container>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <LHeader>
-                    <LHeaderTitle>Farmacare</LHeaderTitle>
-                </LHeader>
+                <Header>
+                    <HeaderTitle>Farmacare</HeaderTitle>
+                </Header>
 
                 <DataGrid>
                     <Component>
@@ -38,32 +44,37 @@ const Search: React.FC = () => {
                             autoCapitalize="none"
                             autoCorrect={false}
                             returnKeyType="next"
-                            onSubmitEditing={() => {
-                                marcaInputRef.current?.focus();
-                            }}
                         />
                     </Component>
 
                     <Component>
                         <Label>Marca</Label>
 
-                        <Input
-                            ref={marcaInputRef}
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            returnKeyType="next"
-                            onSubmitEditing={() => {
-                                enderecoInputRef.current?.focus();
+                        <Picker
+                            style={{
+                                width: 200,
+                                height: 40,
                             }}
-                        />
+                            mode="dropdown"
+                            selectedValue={marca}
+                            onValueChange={(itemMarca, itemIndex) =>
+                                setMarca(itemMarca)
+                            }
+                        >
+                            <Picker.Item
+                                label="Eurofarma"
+                                value="eurofarma"
+                                fontFamily="sora-regular"
+                            />
+                            <Picker.Item label="Medley" value="medley" />
+                            <Picker.Item label="Geolab" value="geolab" />
+                        </Picker>
                     </Component>
 
                     <Component>
                         <Label>Endereço</Label>
 
                         <Input
-                            ref={enderecoInputRef}
                             secureTextEntry
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -82,7 +93,7 @@ const Search: React.FC = () => {
                         />
                     </Component>
 
-                    <EnterButton>
+                    <EnterButton onPress={() => navigation.navigate('Result')}>
                         <EnterTitle>Busca</EnterTitle>
 
                         <IconComponent>

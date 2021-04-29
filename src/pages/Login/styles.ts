@@ -15,14 +15,14 @@ export const Container = styled.ImageBackground.attrs({
     background-color: ${colors.color_three};
 `;
 
-export const LHeader = styled.View`
+export const Header = styled.View`
     margin-top: ${`${4 * Constants.statusBarHeight}px`};
     margin-bottom: ${`${2 * Constants.statusBarHeight}px`};
     align-items: center;
     flex: 0.4;
 `;
 
-export const LHeaderTitle = styled.Text`
+export const HeaderTitle = styled.Text`
     font-size: ${`${0.1 * width}px`};
     font-family: 'NothingYouCouldDo_400Regular';
     color: ${colors.color_five};

@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Search from '../pages/Search';
+import Result from '../pages/Result';
 
 const App = createStackNavigator();
 
@@ -16,6 +17,7 @@ const Routes: React.FC = () => (
         <App.Screen name="Home" component={Home} />
         <App.Screen name="Login" component={Login} />
         <App.Screen name="Search" component={Search} />
+        <App.Screen name="Result" component={Result} />
     </App.Navigator>
 );
 

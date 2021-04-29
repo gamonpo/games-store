@@ -5,8 +5,8 @@ import { Alert } from 'react-native';
 
 import {
     Container,
-    LHeader,
-    LHeaderTitle,
+    Header,
+    HeaderTitle,
     LButton,
     LTitle,
     CButton,
@@ -18,9 +18,9 @@ const Home: React.FC = () => {
 
     return (
         <Container>
-            <LHeader>
-                <LHeaderTitle>Farmacare</LHeaderTitle>
-            </LHeader>
+            <Header>
+                <HeaderTitle>Farmacare</HeaderTitle>
+            </Header>
 
             <LButton onPress={() => navigation.navigate('Login')}>
                 <LTitle>Login</LTitle>
