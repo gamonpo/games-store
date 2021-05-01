@@ -54,7 +54,7 @@ const Login: React.FC = () => {
                         />
                     </Component>
 
-                    <EnterButton onPress={() => navigation.navigate('Search')}>
+                    <EnterButton onPress={() => navigation.navigate('Menu')}>
                         <EnterTitle>Entrar</EnterTitle>
                     </EnterButton>
                 </DataGrid>
