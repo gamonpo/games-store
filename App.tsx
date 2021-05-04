@@ -14,6 +14,7 @@ const App: React.FC = () => {
         NothingYouCouldDo_400Regular,
         'sora-regular': require('./assets/fonts/Sora-Regular.ttf'),
         'sora-thin': require('./assets/fonts/Sora-Thin.ttf'),
+        'sora-bold': require('./assets/fonts/Sora-Bold.ttf'),
     });
 
     if (!fontsLoaded) {
