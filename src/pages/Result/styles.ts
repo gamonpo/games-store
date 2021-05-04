@@ -51,3 +51,85 @@ export const IconImage = styled.Image.attrs({
     width: 32px;
     height: 32px;
 `;
+
+export const List = styled.FlatList`
+    align-self: center;
+`;
+
+export const Item = styled.View`
+    margin: 20px;
+    background-color: ${colors.color_item};
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    elevation: 20;
+    justify-content: center;
+`;
+
+export const ComponentOne = styled.View`
+    flex-direction: row;
+`;
+
+export const ProductInfo = styled.View`
+    flex-direction: column;
+    padding: 10px;
+`;
+
+export const ProductImage = styled.Image`
+    width: 100px;
+`;
+
+export const ProductPrice = styled.Text`
+    font-size: ${`${0.05 * width}px`};
+    color: ${colors.color_five};
+    font-family: 'sora-regular';
+`;
+
+export const ProductTrademark = styled.Text`
+    font-size: ${`${0.04 * width}px`};
+    color: ${colors.color_font};
+    font-family: 'sora-regular';
+`;
+
+export const ProductDeliveryTime = styled.Text`
+    top: 10px;
+    font-size: ${`${0.04 * width}px`};
+    color: ${colors.color_font};
+    font-family: 'sora-thin';
+`;
+
+export const ProductDetails = styled.TouchableOpacity`
+    top: 20px;
+    flex-direction: row;
+    align-items: center;
+`;
+
+export const ProductDetailsTitle = styled.Text`
+    font-size: ${`${0.05 * width}px`};
+    color: ${colors.color_five};
+    font-family: 'sora-regular';
+`;
+
+export const ProductDetailsIcon = styled.Image`
+    width: 10px;
+    top: 4px;
+    left: 10px;
+`;
+
+export const EnterButton = styled.TouchableOpacity`
+    margin-top: 50px;
+    margin-bottom: 5px;
+    width: 225px;
+    height: 65px;
+    border-radius: 30px;
+    background-color: ${colors.color_four};
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+`;
+
+export const EnterTitle = styled.Text`
+    font-size: ${`${0.08 * width}px`};
+    color: ${colors.color_three};
+    font-family: 'sora-regular';
+`;

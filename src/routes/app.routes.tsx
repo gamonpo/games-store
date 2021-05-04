@@ -7,7 +7,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Main from '../pages/Main';
 import Search from '../pages/Search';
-import Message from '../pages/Message';
+import Result from '../pages/Result';
 
 import colors from '../style/colors';
 
@@ -55,23 +55,11 @@ function Menu() {
                             />
                         );
                     }
-                    if (route.name === 'Message') {
-                        iconName = focused ? 'chatbox' : 'chatbox-outline';
-
-                        return (
-                            <Ionicons
-                                name={iconName}
-                                size={size}
-                                color={color}
-                            />
-                        );
-                    }
                 },
             })}
         >
             <Tab.Screen name="Main" component={Main} />
             <Tab.Screen name="Search" component={Search} />
-            <Tab.Screen name="Message" component={Message} />
         </Tab.Navigator>
     );
 }
@@ -85,6 +73,7 @@ const Routes: React.FC = () => (
         <App.Screen name="Home" component={Home} />
         <App.Screen name="Login" component={Login} />
         <App.Screen name="Menu" component={Menu} />
+        <App.Screen name="Result" component={Result} />
     </App.Navigator>
 );
 

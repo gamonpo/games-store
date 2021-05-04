@@ -6,4 +6,5 @@ export default {
     color_five: '#37A8E8',
     color_input: '#F4F4F4',
     color_font: '#1F2224',
+    color_item: '#E6E6E6',
 };

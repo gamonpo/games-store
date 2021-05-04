@@ -40,7 +40,6 @@ const Search: React.FC = () => {
                         <Label>Medicamento</Label>
 
                         <Input
-                            keyboardType="email-address"
                             autoCapitalize="none"
                             autoCorrect={false}
                             returnKeyType="next"
@@ -75,7 +74,6 @@ const Search: React.FC = () => {
                         <Label>Endereço</Label>
 
                         <Input
-                            secureTextEntry
                             autoCapitalize="none"
                             autoCorrect={false}
                             returnKeyType="next"
