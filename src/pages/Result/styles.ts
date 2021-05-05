@@ -18,7 +18,6 @@ export const Container = styled.ImageBackground.attrs({
 export const Header = styled.View`
     margin-top: ${`${2 * Constants.statusBarHeight}px`};
     margin-bottom: ${`${2 * Constants.statusBarHeight}px`};
-    /* flex: 0.4; */
     padding: 15px;
 `;
 
@@ -66,7 +65,7 @@ export const Item = styled.View`
     justify-content: center;
 `;
 
-export const ComponentOne = styled.View`
+export const ProductCard = styled.View`
     flex-direction: row;
 `;
 
@@ -83,6 +82,30 @@ export const ProductPrice = styled.Text`
     font-size: ${`${0.05 * width}px`};
     color: ${colors.color_five};
     font-family: 'sora-regular';
+`;
+
+export const ProductCheckbox = styled.View`
+    flex-direction: row;
+    right: 50px;
+    height: 30px;
+    justify-content: center;
+`;
+
+export const CheckboxLabel = styled.Text`
+    font-size: ${`${0.03 * width}px`};
+    color: ${colors.color_font};
+    font-family: 'sora-thin';
+    top: 5px;
+`;
+
+export const CartIcon = styled.TouchableOpacity`
+    width: 38px;
+    height: 38px;
+    right: 80px;
+    top: 100px;
+    background-color: ${colors.color_two};
+    justify-content: center;
+    align-items: center;
 `;
 
 export const ProductTrademark = styled.Text`

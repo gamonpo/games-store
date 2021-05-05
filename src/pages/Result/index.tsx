@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+import CheckBox from '@react-native-community/checkbox';
+
+import { Ionicons } from '@expo/vector-icons';
+
 import {
     Container,
     Header,
@@ -10,17 +14,20 @@ import {
     IconImage,
     List,
     Item,
-    ComponentOne,
+    ProductCard,
     ProductInfo,
     ProductImage,
     ProductPrice,
     ProductTrademark,
+    CheckboxLabel,
+    ProductCheckbox,
     ProductDeliveryTime,
     ProductDetails,
     ProductDetailsTitle,
     ProductDetailsIcon,
     EnterButton,
     EnterTitle,
+    CartIcon,
 } from './styles';
 
 import one from '../../assets/items/numberOne.png';
@@ -75,10 +82,13 @@ const Result = () => {
         },
     ]);
 
+    const checkbox = true;
+
     const renderItem = ({ item }) => (
         <Item>
-            <ComponentOne>
+            <ProductCard>
                 <ProductImage source={item.img} />
+
                 <ProductInfo>
                     <ProductPrice>R$ {item.price}</ProductPrice>
 
@@ -92,7 +102,21 @@ const Result = () => {
                         <ProductDetailsIcon source={arrow} />
                     </ProductDetails>
                 </ProductInfo>
-            </ComponentOne>
+
+                <ProductCheckbox>
+                    <CheckBox
+                        disabled
+                        value={checkbox}
+                        tintColors={{ true: '#1B9F18' }}
+                    />
+
+                    <CheckboxLabel>Genérico</CheckboxLabel>
+                </ProductCheckbox>
+
+                <CartIcon>
+                    <Ionicons name="cart-outline" size={25} color="white" />
+                </CartIcon>
+            </ProductCard>
         </Item>
     );
 
