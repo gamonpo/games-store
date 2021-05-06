@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import CheckBox from '@react-native-community/checkbox';
 
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 import {
     Container,
@@ -11,7 +11,11 @@ import {
     SubHeader,
     SubTitle,
     IconComponent,
-    IconImage,
+    IconSearch,
+    OrderList,
+    OrderTitle,
+    IconCaret,
+    IconCart,
     List,
     Item,
     ProductCard,
@@ -28,12 +32,17 @@ import {
     EnterButton,
     EnterTitle,
     CartIcon,
+    ListHeader,
+    IconCaretDown,
+    IconCaretUp,
+    Elipse,
 } from './styles';
 
 import one from '../../assets/items/numberOne.png';
 import two from '../../assets/items/numberTwo.png';
 import three from '../../assets/items/numberThree.png';
 import arrow from '../../assets/arrow.png';
+import colors from '../../style/colors';
 
 interface Data {
     id: string;
@@ -126,12 +135,44 @@ const Result = () => {
                 <HeaderTitle>Farmcare</HeaderTitle>
 
                 <SubHeader>
+                    <Elipse />
                     <SubTitle>Resultados</SubTitle>
 
                     <IconComponent>
-                        <IconImage />
+                        <IconSearch />
                     </IconComponent>
                 </SubHeader>
+
+                <ListHeader>
+                    <OrderList>
+                        <OrderTitle>Ordenar</OrderTitle>
+
+                        <IconCaret>
+                            <IconCaretUp>
+                                <AntDesign
+                                    name="caretup"
+                                    size={13}
+                                    color={colors.color_font}
+                                />
+                            </IconCaretUp>
+
+                            <IconCaretDown>
+                                <AntDesign
+                                    name="caretdown"
+                                    size={13}
+                                    color={colors.color_font}
+                                />
+                            </IconCaretDown>
+                        </IconCaret>
+                    </OrderList>
+                    <IconCart>
+                        <Ionicons
+                            name="cart-outline"
+                            size={32}
+                            color={colors.color_two}
+                        />
+                    </IconCart>
+                </ListHeader>
             </Header>
 
             <List

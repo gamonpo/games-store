@@ -7,4 +7,5 @@ export default {
     color_input: '#F4F4F4',
     color_font: '#1F2224',
     color_item: '#E6E6E6',
+    color_border: '#BABABA',
 };

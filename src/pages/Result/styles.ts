@@ -4,6 +4,7 @@ import { Dimensions } from 'react-native';
 import colors from '../../style/colors';
 
 import img from '../../assets/background_two.png';
+import elipse from '../../assets/elipse.png';
 import search from '../../assets/search_blue.png';
 
 const { width } = Dimensions.get('window');
@@ -16,9 +17,9 @@ export const Container = styled.ImageBackground.attrs({
 `;
 
 export const Header = styled.View`
-    margin-top: ${`${2 * Constants.statusBarHeight}px`};
-    margin-bottom: ${`${2 * Constants.statusBarHeight}px`};
-    padding: 15px;
+    padding-top: ${`${2 * Constants.statusBarHeight}px`};
+    elevation: 0.9;
+    background-color: ${colors.color_three};
 `;
 
 export const HeaderTitle = styled.Text`
@@ -26,6 +27,7 @@ export const HeaderTitle = styled.Text`
     font-family: 'NothingYouCouldDo_400Regular';
     color: ${colors.color_five};
     margin-bottom: 50px;
+    left: ${`${0.05 * width}px`};
 `;
 
 export const SubHeader = styled.View`
@@ -33,20 +35,75 @@ export const SubHeader = styled.View`
     justify-content: space-between;
 `;
 
+export const Elipse = styled.ImageBackground.attrs({
+    source: elipse,
+})`
+    width: 50px;
+    height: 69px;
+    flex-grow: 0;
+`;
+
 export const SubTitle = styled.Text`
     font-size: ${`${0.06 * width}px`};
     font-family: 'sora-regular';
     color: ${colors.color_font};
+    right: 25px;
+    flex-grow: 1;
 `;
 
 export const IconComponent = styled.TouchableOpacity`
     border-radius: 30px;
     justify-content: center;
+    bottom: 15px;
+    flex-grow: 0.1;
 `;
 
-export const IconImage = styled.Image.attrs({
+export const IconSearch = styled.Image.attrs({
     source: search,
 })`
+    width: 32px;
+    height: 32px;
+`;
+
+export const ListHeader = styled.View`
+    /* height: 50px; */
+    flex-direction: row;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+`;
+
+export const OrderList = styled.View`
+    width: 126px;
+    height: 44.63px;
+    flex-direction: row;
+    border: 1px solid ${colors.color_border};
+    border-radius: 15px;
+    justify-content: center;
+`;
+
+export const OrderTitle = styled.Text`
+    font-size: ${`${0.04 * width}px`};
+    color: ${colors.color_font};
+    font-family: 'sora-extralight';
+    right: 10px;
+    top: 7px;
+`;
+
+export const IconCaret = styled.View`
+    flex-direction: column;
+    justify-content: center;
+`;
+
+export const IconCaretUp = styled.TouchableOpacity`
+    left: 5px;
+    top: 2px;
+`;
+
+export const IconCaretDown = styled.TouchableOpacity``;
+
+export const IconCart = styled.View`
     width: 32px;
     height: 32px;
 `;
