@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 
 import CheckBox from '@react-native-community/checkbox';
 
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import { Ionicons, AntDesign, Feather } from '@expo/vector-icons';
 
-import { ScrollView, ScrollViewComponent, View } from 'react-native';
+import { Modal } from 'react-native';
+
+import { BlurView } from 'expo-blur';
 
 import {
     Container,
@@ -41,6 +43,13 @@ import {
     LoadMore,
     LoadMoreTitle,
     ProductDetailsButton,
+    ModalView,
+    ModalButton,
+    ModalButtonTitle,
+    ModalDecisionButton,
+    ModalDecisionButtonTitle,
+    ModalDecisionView,
+    ModalIconView,
 } from './styles';
 
 import one from '../../assets/items/numberOne.png';
@@ -116,6 +125,7 @@ const Result = () => {
             delivery: '2 dia para entrega',
         },
     ]);
+    const [modalVisible, setModalVisible] = useState(false);
     const [order, setOrder] = useState<string>('');
 
     const checkbox = true;
@@ -149,7 +159,9 @@ const Result = () => {
                             <ProductDetailsIcon source={arrow} />
                         </ProductDetailsButton>
 
-                        <CartIcon>
+                        <CartIcon
+                            onPress={() => setModalVisible(!modalVisible)}
+                        >
                             <Ionicons
                                 name="cart-outline"
                                 size={25}
@@ -159,9 +171,88 @@ const Result = () => {
                     </ProductDetails>
                 </ProductInfo>
 
-                {/* <CartIcon>
-                    <Ionicons name="cart-outline" size={25} color="white" />
-                </CartIcon> */}
+                <Modal transparent animationType="slide" visible={modalVisible}>
+                    <BlurView
+                        style={{
+                            flex: 1,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                        intensity={30}
+                    >
+                        <ModalIconView
+                            onPress={() => setModalVisible(!modalVisible)}
+                        >
+                            <Feather name="x" size={60} color="black" />
+                        </ModalIconView>
+                        <ModalView>
+                            <ProductImage source={item.img} />
+
+                            <ProductInfo style={{ left: 50, width: 300 }}>
+                                <ProductPrice>R$ {item.price}</ProductPrice>
+
+                                <ProductTrademark style={{ bottom: 0 }}>
+                                    {item.trademark}
+                                </ProductTrademark>
+
+                                <ProductCheckbox
+                                    style={{ bottom: 0, left: 7, width: 60 }}
+                                >
+                                    <CheckBox
+                                        disabled
+                                        value={checkbox}
+                                        tintColors={{ true: '#1B9F18' }}
+                                    />
+
+                                    <CheckboxLabel>Genérico</CheckboxLabel>
+                                </ProductCheckbox>
+
+                                <ProductDeliveryTime style={{ bottom: 0 }}>
+                                    {item.delivery}
+                                </ProductDeliveryTime>
+
+                                <ProductDetails>
+                                    <ProductDetailsButton
+                                        style={{ flexGrow: 0 }}
+                                    >
+                                        <ProductDetailsTitle>
+                                            Detalhes
+                                        </ProductDetailsTitle>
+
+                                        <ProductDetailsIcon source={arrow} />
+                                    </ProductDetailsButton>
+                                </ProductDetails>
+                            </ProductInfo>
+                        </ModalView>
+
+                        <ModalButton>
+                            <Ionicons
+                                name="cart-outline"
+                                size={45}
+                                color="white"
+                            />
+                            <ModalButtonTitle>Adicionar ?</ModalButtonTitle>
+                        </ModalButton>
+
+                        <ModalDecisionView>
+                            <ModalDecisionButton
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <ModalDecisionButtonTitle>
+                                    Sim
+                                </ModalDecisionButtonTitle>
+                            </ModalDecisionButton>
+
+                            <ModalDecisionButton
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <ModalDecisionButtonTitle>
+                                    Não
+                                </ModalDecisionButtonTitle>
+                            </ModalDecisionButton>
+                        </ModalDecisionView>
+                    </BlurView>
+                </Modal>
             </ProductCard>
         </Item>
     );

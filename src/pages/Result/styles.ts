@@ -206,6 +206,58 @@ export const CartIcon = styled.TouchableOpacity`
     align-items: center;
 `;
 
+export const ModalIconView = styled.TouchableOpacity`
+    width: 60px;
+    height: 60px;
+`;
+
+export const ModalView = styled.View`
+    width: 300px;
+    height: 200px;
+    background-color: ${colors.color_three};
+    align-self: center;
+    border-radius: 5px;
+    flex-direction: row;
+    padding: 10px;
+`;
+
+export const ModalButton = styled.TouchableOpacity`
+    width: 300px;
+    height: 90px;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: ${colors.color_two};
+`;
+
+export const ModalButtonTitle = styled.Text`
+    font-size: ${`${0.04 * width}px`};
+    color: ${colors.color_three};
+    font-family: 'sora-regular';
+`;
+
+export const ModalDecisionView = styled.View`
+    flex-direction: row;
+    align-self: center;
+`;
+
+export const ModalDecisionButton = styled.TouchableOpacity`
+    width: 150px;
+    height: 40px;
+    background-color: ${colors.color_three};
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin: 10px;
+`;
+
+export const ModalDecisionButtonTitle = styled.Text`
+    font-size: ${`${0.04 * width}px`};
+    color: ${colors.color_two};
+    font-family: 'sora-semibold';
+`;
+
 export const LoadMore = styled.TouchableOpacity`
     margin: 20px;
     height: 30px;

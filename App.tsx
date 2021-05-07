@@ -16,6 +16,7 @@ const App: React.FC = () => {
         'sora-thin': require('./assets/fonts/Sora-Thin.ttf'),
         'sora-bold': require('./assets/fonts/Sora-Bold.ttf'),
         'sora-extralight': require('./assets/fonts/Sora-ExtraLight.ttf'),
+        'sora-semibold': require('./assets/fonts/Sora-SemiBold.ttf'),
     });
 
     if (!fontsLoaded) {
