@@ -4,6 +4,8 @@ import CheckBox from '@react-native-community/checkbox';
 
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
+import { ScrollView, ScrollViewComponent, View } from 'react-native';
+
 import {
     Container,
     Header,
@@ -36,6 +38,9 @@ import {
     IconCaretDown,
     IconCaretUp,
     Elipse,
+    LoadMore,
+    LoadMoreTitle,
+    ProductDetailsButton,
 } from './styles';
 
 import one from '../../assets/items/numberOne.png';
@@ -48,7 +53,7 @@ interface Data {
     id: string;
     img: string;
     trademark: string;
-    price: number;
+    price: string;
     delivery: string;
 }
 
@@ -58,38 +63,60 @@ const Result = () => {
             id: '1',
             img: one,
             trademark: 'Eurofarma',
-            price: 34.9,
+            price: '34,90',
             delivery: '2 dia para entrega',
         },
         {
             id: '2',
             img: two,
             trademark: 'Medley',
-            price: 34.9,
+            price: '31,90',
             delivery: '2 dia para entrega',
         },
         {
             id: '3',
             img: three,
             trademark: 'Geolab',
-            price: 34.9,
+            price: '32,90',
             delivery: '2 dia para entrega',
         },
         {
             id: '4',
             img: two,
             trademark: 'Medley',
-            price: 34.9,
+            price: '31,9',
             delivery: '2 dia para entrega',
         },
         {
             id: '5',
             img: three,
             trademark: 'Geolab',
-            price: 34.9,
+            price: '32,9',
+            delivery: '2 dia para entrega',
+        },
+        {
+            id: '6',
+            img: three,
+            trademark: 'Geolab',
+            price: '32,9',
+            delivery: '2 dia para entrega',
+        },
+        {
+            id: '7',
+            img: three,
+            trademark: 'Geolab',
+            price: '32,9',
+            delivery: '2 dia para entrega',
+        },
+        {
+            id: '8',
+            img: three,
+            trademark: 'Geolab',
+            price: '32,9',
             delivery: '2 dia para entrega',
         },
     ]);
+    const [order, setOrder] = useState<string>('');
 
     const checkbox = true;
 
@@ -101,34 +128,50 @@ const Result = () => {
                 <ProductInfo>
                     <ProductPrice>R$ {item.price}</ProductPrice>
 
+                    <ProductCheckbox>
+                        <CheckBox
+                            disabled
+                            value={checkbox}
+                            tintColors={{ true: '#1B9F18' }}
+                        />
+
+                        <CheckboxLabel>Genérico</CheckboxLabel>
+                    </ProductCheckbox>
+
                     <ProductTrademark>{item.trademark}</ProductTrademark>
 
                     <ProductDeliveryTime>{item.delivery}</ProductDeliveryTime>
 
                     <ProductDetails>
-                        <ProductDetailsTitle>Detalhes</ProductDetailsTitle>
+                        <ProductDetailsButton>
+                            <ProductDetailsTitle>Detalhes</ProductDetailsTitle>
 
-                        <ProductDetailsIcon source={arrow} />
+                            <ProductDetailsIcon source={arrow} />
+                        </ProductDetailsButton>
+
+                        <CartIcon>
+                            <Ionicons
+                                name="cart-outline"
+                                size={25}
+                                color="white"
+                            />
+                        </CartIcon>
                     </ProductDetails>
                 </ProductInfo>
 
-                <ProductCheckbox>
-                    <CheckBox
-                        disabled
-                        value={checkbox}
-                        tintColors={{ true: '#1B9F18' }}
-                    />
-
-                    <CheckboxLabel>Genérico</CheckboxLabel>
-                </ProductCheckbox>
-
-                <CartIcon>
+                {/* <CartIcon>
                     <Ionicons name="cart-outline" size={25} color="white" />
-                </CartIcon>
+                </CartIcon> */}
             </ProductCard>
         </Item>
     );
 
+    if (order === 'ascend') {
+        data.sort((a, b) => parseInt(a.price, 10) - parseInt(b.price, 10));
+    }
+    if (order === 'descend') {
+        data.sort((a, b) => parseInt(b.price, 10) - parseInt(a.price, 10));
+    }
     return (
         <Container>
             <Header>
@@ -148,18 +191,18 @@ const Result = () => {
                         <OrderTitle>Ordenar</OrderTitle>
 
                         <IconCaret>
-                            <IconCaretUp>
+                            <IconCaretUp onPress={() => setOrder('ascend')}>
                                 <AntDesign
                                     name="caretup"
-                                    size={13}
+                                    size={24}
                                     color={colors.color_font}
                                 />
                             </IconCaretUp>
 
-                            <IconCaretDown>
+                            <IconCaretDown onPress={() => setOrder('descend')}>
                                 <AntDesign
                                     name="caretdown"
-                                    size={13}
+                                    size={24}
                                     color={colors.color_font}
                                 />
                             </IconCaretDown>
@@ -180,10 +223,22 @@ const Result = () => {
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 showsVerticalScrollIndicator={false}
+                ListFooterComponent={
+                    <>
+                        <LoadMore>
+                            <LoadMoreTitle>Carregar mais</LoadMoreTitle>
+                            <AntDesign
+                                name="caretdown"
+                                size={30}
+                                color={colors.color_five}
+                            />
+                        </LoadMore>
+                        <EnterButton>
+                            <EnterTitle>Pagamento</EnterTitle>
+                        </EnterButton>
+                    </>
+                }
             />
-            <EnterButton>
-                <EnterTitle>Pagamento</EnterTitle>
-            </EnterButton>
         </Container>
     );
 };

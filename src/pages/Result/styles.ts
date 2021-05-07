@@ -1,6 +1,10 @@
 import styled from 'styled-components/native';
 import Constants from 'expo-constants';
 import { Dimensions } from 'react-native';
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import colors from '../../style/colors';
 
 import img from '../../assets/background_two.png';
@@ -66,7 +70,6 @@ export const IconSearch = styled.Image.attrs({
 `;
 
 export const ListHeader = styled.View`
-    /* height: 50px; */
     flex-direction: row;
     flex-direction: row;
     justify-content: space-around;
@@ -75,11 +78,11 @@ export const ListHeader = styled.View`
 `;
 
 export const OrderList = styled.View`
-    width: 126px;
-    height: 44.63px;
+    width: 136px;
+    height: 50px;
     flex-direction: row;
     border: 1px solid ${colors.color_border};
-    border-radius: 15px;
+    border-radius: 23px;
     justify-content: center;
 `;
 
@@ -98,10 +101,12 @@ export const IconCaret = styled.View`
 
 export const IconCaretUp = styled.TouchableOpacity`
     left: 5px;
-    top: 2px;
+    top: 4px;
 `;
 
-export const IconCaretDown = styled.TouchableOpacity``;
+export const IconCaretDown = styled.TouchableOpacity`
+    bottom: 4px;
+`;
 
 export const IconCart = styled.View`
     width: 32px;
@@ -113,27 +118,28 @@ export const List = styled.FlatList`
 `;
 
 export const Item = styled.View`
-    margin: 20px;
+    margin-top: ${`${hp('5%')}px`};
     background-color: ${colors.color_item};
-    width: 300px;
-    height: 200px;
+    width: ${`${wp('90%')}px`};
+    height: ${`${hp('30%')}px`};
     border-radius: 5px;
-    elevation: 20;
+    elevation: 5;
     justify-content: center;
+    align-items: center;
 `;
 
 export const ProductCard = styled.View`
     flex-direction: row;
+    width: ${`${wp('80%')}px`};
 `;
 
 export const ProductInfo = styled.View`
     flex-direction: column;
-    padding: 10px;
+    width: 100%;
+    left: 2px;
 `;
 
-export const ProductImage = styled.Image`
-    width: 100px;
-`;
+export const ProductImage = styled.Image``;
 
 export const ProductPrice = styled.Text`
     font-size: ${`${0.05 * width}px`};
@@ -143,9 +149,8 @@ export const ProductPrice = styled.Text`
 
 export const ProductCheckbox = styled.View`
     flex-direction: row;
-    right: 50px;
-    height: 30px;
     justify-content: center;
+    bottom: 30px;
 `;
 
 export const CheckboxLabel = styled.Text`
@@ -155,37 +160,33 @@ export const CheckboxLabel = styled.Text`
     top: 5px;
 `;
 
-export const CartIcon = styled.TouchableOpacity`
-    width: 38px;
-    height: 38px;
-    right: 80px;
-    top: 100px;
-    background-color: ${colors.color_two};
-    justify-content: center;
-    align-items: center;
-`;
-
 export const ProductTrademark = styled.Text`
     font-size: ${`${0.04 * width}px`};
     color: ${colors.color_font};
     font-family: 'sora-regular';
+    bottom: 30px;
 `;
 
 export const ProductDeliveryTime = styled.Text`
-    top: 10px;
+    bottom: 20px;
     font-size: ${`${0.04 * width}px`};
     color: ${colors.color_font};
     font-family: 'sora-thin';
 `;
 
-export const ProductDetails = styled.TouchableOpacity`
-    top: 20px;
+export const ProductDetails = styled.View`
     flex-direction: row;
     align-items: center;
 `;
 
+export const ProductDetailsButton = styled.TouchableOpacity`
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 0.63;
+`;
+
 export const ProductDetailsTitle = styled.Text`
-    font-size: ${`${0.05 * width}px`};
+    font-size: ${`${0.04 * width}px`};
     color: ${colors.color_five};
     font-family: 'sora-regular';
 `;
@@ -196,12 +197,37 @@ export const ProductDetailsIcon = styled.Image`
     left: 10px;
 `;
 
+export const CartIcon = styled.TouchableOpacity`
+    width: 40px;
+    height: 40px;
+    flex-grow: 0;
+    background-color: ${colors.color_two};
+    justify-content: center;
+    align-items: center;
+`;
+
+export const LoadMore = styled.TouchableOpacity`
+    margin: 20px;
+    height: 30px;
+    align-items: center;
+    align-self: center;
+    border-bottom-width: 1px;
+    flex-direction: column;
+`;
+
+export const LoadMoreTitle = styled.Text`
+    font-size: ${`${0.04 * width}px`};
+    color: ${colors.color_font};
+    font-family: 'sora-extralight';
+    top: 6px;
+    padding-bottom: 5px;
+`;
+
 export const EnterButton = styled.TouchableOpacity`
-    margin-top: 50px;
-    margin-bottom: 5px;
-    width: 225px;
-    height: 65px;
-    border-radius: 30px;
+    margin: 20px;
+    width: 245px;
+    height: 61px;
+    border-radius: 5px;
     background-color: ${colors.color_four};
     align-items: center;
     justify-content: center;
@@ -209,7 +235,7 @@ export const EnterButton = styled.TouchableOpacity`
 `;
 
 export const EnterTitle = styled.Text`
-    font-size: ${`${0.08 * width}px`};
+    font-size: ${`${0.06 * width}px`};
     color: ${colors.color_three};
     font-family: 'sora-regular';
 `;
