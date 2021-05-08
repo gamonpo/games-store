@@ -111,6 +111,14 @@ export const IconCaretDown = styled.TouchableOpacity`
 export const IconCart = styled.View`
     width: 32px;
     height: 32px;
+    flex-direction: row;
+`;
+
+export const IconCartBadge = styled.Text`
+    font-size: ${`${0.04 * width}px`};
+    color: ${colors.color_badge};
+    font-family: 'sora-regular';
+    top: 12px;
 `;
 
 export const List = styled.FlatList`

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CheckBox from '@react-native-community/checkbox';
 
@@ -50,6 +50,7 @@ import {
     ModalDecisionButtonTitle,
     ModalDecisionView,
     ModalIconView,
+    IconCartBadge,
 } from './styles';
 
 import one from '../../assets/items/numberOne.png';
@@ -126,9 +127,29 @@ const Result = () => {
         },
     ]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [selecteditem, setSelecteditem] = useState<Data>({
+        delivery: '',
+        id: '',
+        img: '',
+        price: '',
+        trademark: '',
+    });
+    const [cart, setCart] = useState<Data[]>([]);
     const [order, setOrder] = useState<string>('');
 
     const checkbox = true;
+
+    const [badge, setBadge] = useState<number>();
+
+    const openModal = (item: Data) => {
+        setSelecteditem(item);
+        setModalVisible(!modalVisible);
+    };
+
+    const addProduct = (item: Data) => {
+        setCart(state => [...state, item]);
+        setModalVisible(!modalVisible);
+    };
 
     const renderItem = ({ item }) => (
         <Item>
@@ -159,9 +180,7 @@ const Result = () => {
                             <ProductDetailsIcon source={arrow} />
                         </ProductDetailsButton>
 
-                        <CartIcon
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
+                        <CartIcon onPress={() => openModal(item)}>
                             <Ionicons
                                 name="cart-outline"
                                 size={25}
@@ -170,92 +189,15 @@ const Result = () => {
                         </CartIcon>
                     </ProductDetails>
                 </ProductInfo>
-
-                <Modal transparent animationType="slide" visible={modalVisible}>
-                    <BlurView
-                        style={{
-                            flex: 1,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}
-                        intensity={30}
-                    >
-                        <ModalIconView
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <Feather name="x" size={60} color="black" />
-                        </ModalIconView>
-                        <ModalView>
-                            <ProductImage source={item.img} />
-
-                            <ProductInfo style={{ left: 50, width: 300 }}>
-                                <ProductPrice>R$ {item.price}</ProductPrice>
-
-                                <ProductTrademark style={{ bottom: 0 }}>
-                                    {item.trademark}
-                                </ProductTrademark>
-
-                                <ProductCheckbox
-                                    style={{ bottom: 0, left: 7, width: 60 }}
-                                >
-                                    <CheckBox
-                                        disabled
-                                        value={checkbox}
-                                        tintColors={{ true: '#1B9F18' }}
-                                    />
-
-                                    <CheckboxLabel>Genérico</CheckboxLabel>
-                                </ProductCheckbox>
-
-                                <ProductDeliveryTime style={{ bottom: 0 }}>
-                                    {item.delivery}
-                                </ProductDeliveryTime>
-
-                                <ProductDetails>
-                                    <ProductDetailsButton
-                                        style={{ flexGrow: 0 }}
-                                    >
-                                        <ProductDetailsTitle>
-                                            Detalhes
-                                        </ProductDetailsTitle>
-
-                                        <ProductDetailsIcon source={arrow} />
-                                    </ProductDetailsButton>
-                                </ProductDetails>
-                            </ProductInfo>
-                        </ModalView>
-
-                        <ModalButton>
-                            <Ionicons
-                                name="cart-outline"
-                                size={45}
-                                color="white"
-                            />
-                            <ModalButtonTitle>Adicionar ?</ModalButtonTitle>
-                        </ModalButton>
-
-                        <ModalDecisionView>
-                            <ModalDecisionButton
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-                                <ModalDecisionButtonTitle>
-                                    Sim
-                                </ModalDecisionButtonTitle>
-                            </ModalDecisionButton>
-
-                            <ModalDecisionButton
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-                                <ModalDecisionButtonTitle>
-                                    Não
-                                </ModalDecisionButtonTitle>
-                            </ModalDecisionButton>
-                        </ModalDecisionView>
-                    </BlurView>
-                </Modal>
             </ProductCard>
         </Item>
     );
+
+    useEffect(() => {
+        if (cart.length > 0) {
+            setBadge(cart.length);
+        }
+    }, [cart]);
 
     if (order === 'ascend') {
         data.sort((a, b) => parseInt(a.price, 10) - parseInt(b.price, 10));
@@ -263,6 +205,7 @@ const Result = () => {
     if (order === 'descend') {
         data.sort((a, b) => parseInt(b.price, 10) - parseInt(a.price, 10));
     }
+
     return (
         <Container>
             <Header>
@@ -305,6 +248,7 @@ const Result = () => {
                             size={32}
                             color={colors.color_two}
                         />
+                        <IconCartBadge>{badge}</IconCartBadge>
                     </IconCart>
                 </ListHeader>
             </Header>
@@ -330,6 +274,83 @@ const Result = () => {
                     </>
                 }
             />
+
+            <Modal transparent animationType="slide" visible={modalVisible}>
+                <BlurView
+                    style={{
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    tint="dark"
+                >
+                    <ModalIconView
+                        onPress={() => setModalVisible(!modalVisible)}
+                    >
+                        <Feather name="x" size={60} color="black" />
+                    </ModalIconView>
+                    <ModalView>
+                        <ProductImage source={selecteditem.img} />
+
+                        <ProductInfo style={{ left: 50, width: 300 }}>
+                            <ProductPrice>R$ {selecteditem.price}</ProductPrice>
+
+                            <ProductTrademark style={{ bottom: 0 }}>
+                                {selecteditem.trademark}
+                            </ProductTrademark>
+
+                            <ProductCheckbox
+                                style={{ bottom: 0, left: 7, width: 60 }}
+                            >
+                                <CheckBox
+                                    disabled
+                                    value={checkbox}
+                                    tintColors={{ true: '#1B9F18' }}
+                                />
+
+                                <CheckboxLabel>Genérico</CheckboxLabel>
+                            </ProductCheckbox>
+
+                            <ProductDeliveryTime style={{ bottom: 0 }}>
+                                {selecteditem.delivery}
+                            </ProductDeliveryTime>
+
+                            <ProductDetails>
+                                <ProductDetailsButton style={{ flexGrow: 0 }}>
+                                    <ProductDetailsTitle>
+                                        Detalhes
+                                    </ProductDetailsTitle>
+
+                                    <ProductDetailsIcon source={arrow} />
+                                </ProductDetailsButton>
+                            </ProductDetails>
+                        </ProductInfo>
+                    </ModalView>
+
+                    <ModalButton>
+                        <Ionicons name="cart-outline" size={45} color="white" />
+                        <ModalButtonTitle>Adicionar ?</ModalButtonTitle>
+                    </ModalButton>
+
+                    <ModalDecisionView>
+                        <ModalDecisionButton
+                            onPress={() => setModalVisible(!modalVisible)}
+                        >
+                            <ModalDecisionButtonTitle>
+                                Não
+                            </ModalDecisionButtonTitle>
+                        </ModalDecisionButton>
+
+                        <ModalDecisionButton
+                            onPress={() => addProduct(selecteditem)}
+                        >
+                            <ModalDecisionButtonTitle>
+                                Sim
+                            </ModalDecisionButtonTitle>
+                        </ModalDecisionButton>
+                    </ModalDecisionView>
+                </BlurView>
+            </Modal>
         </Container>
     );
 };
