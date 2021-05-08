@@ -8,6 +8,7 @@ import Login from '../pages/Login';
 import Main from '../pages/Main';
 import Search from '../pages/Search';
 import Result from '../pages/Result';
+import Remedy from '../pages/Remedy';
 
 import colors from '../style/colors';
 
@@ -74,6 +75,7 @@ const Routes: React.FC = () => (
         <App.Screen name="Login" component={Login} />
         <App.Screen name="Menu" component={Menu} />
         <App.Screen name="Result" component={Result} />
+        <App.Screen name="Remedy" component={Remedy} />
     </App.Navigator>
 );
 

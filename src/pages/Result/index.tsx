@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import { useNavigation } from '@react-navigation/native';
+
 import CheckBox from '@react-native-community/checkbox';
 
 import { Ionicons, AntDesign, Feather } from '@expo/vector-icons';
@@ -141,6 +143,8 @@ const Result = () => {
 
     const [badge, setBadge] = useState<number>();
 
+    const navigation = useNavigation();
+
     const openModal = (item: Data) => {
         setSelecteditem(item);
         setModalVisible(!modalVisible);
@@ -256,7 +260,7 @@ const Result = () => {
             <List
                 data={data}
                 renderItem={renderItem}
-                keyExtractor={item => item.id}
+                keyExtractor={(item: Data) => item.id}
                 showsVerticalScrollIndicator={false}
                 ListFooterComponent={
                     <>
@@ -268,7 +272,13 @@ const Result = () => {
                                 color={colors.color_five}
                             />
                         </LoadMore>
-                        <EnterButton>
+                        <EnterButton
+                            onPress={() =>
+                                navigation.navigate('Remedy', {
+                                    item: selecteditem,
+                                })
+                            }
+                        >
                             <EnterTitle>Pagamento</EnterTitle>
                         </EnterButton>
                     </>
