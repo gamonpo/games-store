@@ -9,6 +9,8 @@ import {
 
 import Routes from './src/routes';
 
+import CartProvider from './src/context/Cart';
+
 const App: React.FC = () => {
     const [fontsLoaded] = useFonts({
         NothingYouCouldDo_400Regular,
@@ -24,10 +26,10 @@ const App: React.FC = () => {
     }
 
     return (
-        <NavigationContainer>
+        <CartProvider>
             <StatusBar style="auto" />
             <Routes />
-        </NavigationContainer>
+        </CartProvider>
     );
 };
 

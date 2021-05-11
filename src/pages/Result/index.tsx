@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 
 import CheckBox from '@react-native-community/checkbox';
 
@@ -61,15 +61,19 @@ import three from '../../assets/items/numberThree.png';
 import arrow from '../../assets/arrow.png';
 import colors from '../../style/colors';
 
+import { useCart } from '../../context/Cart';
+
 interface Data {
     id: string;
     img: string;
     trademark: string;
     price: string;
     delivery: string;
+    cart: number;
 }
 
 const Result = () => {
+    const isFocused = useIsFocused();
     const [data, setData] = useState<Data[]>([
         {
             id: '1',
@@ -77,6 +81,7 @@ const Result = () => {
             trademark: 'Eurofarma',
             price: '34,90',
             delivery: '2 dia para entrega',
+            cart: 1,
         },
         {
             id: '2',
@@ -84,6 +89,7 @@ const Result = () => {
             trademark: 'Medley',
             price: '31,90',
             delivery: '2 dia para entrega',
+            cart: 1,
         },
         {
             id: '3',
@@ -91,52 +97,12 @@ const Result = () => {
             trademark: 'Geolab',
             price: '32,90',
             delivery: '2 dia para entrega',
-        },
-        {
-            id: '4',
-            img: two,
-            trademark: 'Medley',
-            price: '31,9',
-            delivery: '2 dia para entrega',
-        },
-        {
-            id: '5',
-            img: three,
-            trademark: 'Geolab',
-            price: '32,9',
-            delivery: '2 dia para entrega',
-        },
-        {
-            id: '6',
-            img: three,
-            trademark: 'Geolab',
-            price: '32,9',
-            delivery: '2 dia para entrega',
-        },
-        {
-            id: '7',
-            img: three,
-            trademark: 'Geolab',
-            price: '32,9',
-            delivery: '2 dia para entrega',
-        },
-        {
-            id: '8',
-            img: three,
-            trademark: 'Geolab',
-            price: '32,9',
-            delivery: '2 dia para entrega',
+            cart: 1,
         },
     ]);
     const [modalVisible, setModalVisible] = useState(false);
-    const [selecteditem, setSelecteditem] = useState<Data>({
-        delivery: '',
-        id: '',
-        img: '',
-        price: '',
-        trademark: '',
-    });
-    const [cart, setCart] = useState<Data[]>([]);
+    const [selecteditem, setSelecteditem] = useState<Data[]>({});
+    const { cart, setCart } = useCart([]);
     const [order, setOrder] = useState<string>('');
 
     const checkbox = true;
@@ -151,8 +117,24 @@ const Result = () => {
     };
 
     const addProduct = (item: Data) => {
-        setCart(state => [...state, item]);
-        setModalVisible(!modalVisible);
+        if (cart.length >= 1) {
+            const exist = cart.find(element => element.id === item.id);
+
+            if (exist) {
+                cart.forEach(element => {
+                    if (element.id === item.id) {
+                        element.cart += 1;
+                    }
+                });
+            } else {
+                setCart(state => [...state, item]);
+            }
+
+            setModalVisible(!modalVisible);
+        } else {
+            setCart(state => [...state, item]);
+            setModalVisible(!modalVisible);
+        }
     };
 
     const renderItem = ({ item }) => (
@@ -200,8 +182,10 @@ const Result = () => {
     useEffect(() => {
         if (cart.length > 0) {
             setBadge(cart.length);
+        } else if (cart.length === 0) {
+            setBadge('');
         }
-    }, [cart]);
+    }, [cart, isFocused]);
 
     if (order === 'ascend') {
         data.sort((a, b) => parseInt(a.price, 10) - parseInt(b.price, 10));
@@ -275,7 +259,7 @@ const Result = () => {
                         <EnterButton
                             onPress={() =>
                                 navigation.navigate('Remedy', {
-                                    item: selecteditem,
+                                    cart,
                                 })
                             }
                         >

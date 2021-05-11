@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -66,17 +67,19 @@ function Menu() {
 }
 
 const Routes: React.FC = () => (
-    <App.Navigator
-        screenOptions={{
-            headerShown: false,
-        }}
-    >
-        <App.Screen name="Home" component={Home} />
-        <App.Screen name="Login" component={Login} />
-        <App.Screen name="Menu" component={Menu} />
-        <App.Screen name="Result" component={Result} />
-        <App.Screen name="Remedy" component={Remedy} />
-    </App.Navigator>
+    <NavigationContainer>
+        <App.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <App.Screen name="Home" component={Home} />
+            <App.Screen name="Login" component={Login} />
+            <App.Screen name="Menu" component={Menu} />
+            <App.Screen name="Result" component={Result} />
+            <App.Screen name="Remedy" component={Remedy} />
+        </App.Navigator>
+    </NavigationContainer>
 );
 
 export default Routes;
