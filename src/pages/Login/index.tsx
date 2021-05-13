@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
-import { ScrollView } from 'react-native';
+import { Alert, ScrollView } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -19,6 +19,18 @@ import {
 const Login: React.FC = () => {
     const navigation = useNavigation();
     const passwordInputRef = useRef<typeof Input>(null);
+    const [email, setEmail] = useState<string>();
+    const [password, setPassword] = useState<string>();
+
+    const checkData = () => {
+        if (!email) {
+            Alert.alert('Erro', 'Insira o e-mail');
+        } else if (!password) {
+            Alert.alert('Erro', 'Insira o e-mail');
+        } else {
+            navigation.navigate('Menu');
+        }
+    };
 
     return (
         <Container>
@@ -35,6 +47,8 @@ const Login: React.FC = () => {
                             keyboardType="email-address"
                             autoCapitalize="none"
                             autoCorrect={false}
+                            onChangeText={e => setEmail(e)}
+                            value={email}
                             returnKeyType="next"
                             onSubmitEditing={() => {
                                 passwordInputRef.current?.focus();
@@ -50,11 +64,13 @@ const Login: React.FC = () => {
                             secureTextEntry
                             autoCapitalize="none"
                             autoCorrect={false}
+                            onChangeText={p => setPassword(p)}
+                            value={password}
                             returnKeyType="send"
                         />
                     </Component>
 
-                    <EnterButton onPress={() => navigation.navigate('Menu')}>
+                    <EnterButton onPress={() => checkData()}>
                         <EnterTitle>Entrar</EnterTitle>
                     </EnterButton>
                 </DataGrid>

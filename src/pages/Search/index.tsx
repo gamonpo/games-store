@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox';
 
@@ -18,15 +18,25 @@ import {
     IconImage,
 } from './styles';
 
-interface Marca {
-    name: string;
-}
-
 const Search: React.FC = () => {
     const navigation = useNavigation();
 
     const [checkbox, setCheckbox] = useState<boolean>();
-    const [marca, setMarca] = useState<Marca>();
+    const [medicamento, setMedicamento] = useState<string>();
+    const [endereco, setEndereco] = useState<string>();
+    const [marca, setMarca] = useState<string>();
+
+    const checkData = () => {
+        if (!medicamento) {
+            Alert.alert('Erro', 'Insira o nome do medicamento!');
+        } else if (!endereco) {
+            Alert.alert('Erro', 'Insira o endereço!');
+        } else {
+            setMedicamento('');
+            setEndereco('');
+            navigation.navigate('Result');
+        }
+    };
 
     return (
         <Container>
@@ -42,6 +52,8 @@ const Search: React.FC = () => {
                         <Input
                             autoCapitalize="none"
                             autoCorrect={false}
+                            onChangeText={m => setMedicamento(m)}
+                            value={medicamento}
                             returnKeyType="next"
                         />
                     </Component>
@@ -76,6 +88,8 @@ const Search: React.FC = () => {
                         <Input
                             autoCapitalize="none"
                             autoCorrect={false}
+                            onChangeText={m => setEndereco(m)}
+                            value={endereco}
                             returnKeyType="next"
                         />
                     </Component>
@@ -91,7 +105,7 @@ const Search: React.FC = () => {
                         />
                     </Component>
 
-                    <EnterButton onPress={() => navigation.navigate('Result')}>
+                    <EnterButton onPress={() => checkData()}>
                         <EnterTitle>Busca</EnterTitle>
 
                         <IconComponent>
