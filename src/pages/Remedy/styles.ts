@@ -158,7 +158,7 @@ export const MiniCardText = styled.Text`
     padding-bottom: 5px;
 `;
 
-export const EnterButton = styled.TouchableOpacity`
+export const EnterButton = styled.View`
     align-items: center;
     justify-content: center;
     align-self: center;
@@ -173,7 +173,7 @@ export const EnterTitle = styled.Text`
 `;
 
 export const ModalView = styled.View`
-    margin-top: ${`${2 * Constants.statusBarHeight}px`};
+    margin-top: ${`${4 * Constants.statusBarHeight}px`};
     width: 100%;
     height: 100%;
 
@@ -279,4 +279,8 @@ export const ModalButtonTitle = styled.Text`
     font-size: ${`${0.05 * width}px`};
     color: ${colors.color_three};
     font-family: 'sora-regular';
+`;
+
+export const Payment = styled.TouchableOpacity`
+    flex-direction: column;
 `;

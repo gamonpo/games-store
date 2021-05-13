@@ -62,3 +62,10 @@ export const EnterTitle = styled.Text`
     color: ${colors.color_three};
     font-family: 'sora-regular';
 `;
+
+export const Indicator = styled.View`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+`;

@@ -42,6 +42,7 @@ import {
     ValidationExpire,
     PriceInfo,
     CardInfo,
+    Payment,
 } from './styles';
 
 import { useCart } from '../../context/Cart';
@@ -188,16 +189,19 @@ const Remedy: React.FC = () => {
                     showsVerticalScrollIndicator={false}
                     ListFooterComponent={
                         <>
-                            <MiniCard>
-                                <MiniCardText>
-                                    X X X X X X X X X X X
-                                </MiniCardText>
-                            </MiniCard>
-                            <EnterButton
+                            <Payment
                                 onPress={() => setModalVisible(!modalVisible)}
                             >
-                                <EnterTitle>Pagamento</EnterTitle>
-                            </EnterButton>
+                                <MiniCard>
+                                    <MiniCardText>
+                                        X X X X X X X X X X X
+                                    </MiniCardText>
+                                </MiniCard>
+                                <EnterButton>
+                                    <EnterTitle>Pagamento</EnterTitle>
+                                </EnterButton>
+                            </Payment>
+
                             <Modal
                                 transparent
                                 animationType="slide"
