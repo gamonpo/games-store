@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert } from 'react-native';
 
 import {
     Container,
@@ -34,7 +35,14 @@ const Message: React.FC = () => {
                 </MessageView>
             </SubHeader>
 
-            <EnterButton>
+            <EnterButton
+                onPress={() =>
+                    Alert.alert(
+                        'Erro',
+                        'Serviço indisponível no momento.Tente mais tarde!',
+                    )
+                }
+            >
                 <EnterTitle>Rastrear</EnterTitle>
             </EnterButton>
         </Container>

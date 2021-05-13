@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import AppLoading from 'expo-app-loading';
 import {
@@ -19,6 +18,8 @@ const App: React.FC = () => {
         'sora-bold': require('./assets/fonts/Sora-Bold.ttf'),
         'sora-extralight': require('./assets/fonts/Sora-ExtraLight.ttf'),
         'sora-semibold': require('./assets/fonts/Sora-SemiBold.ttf'),
+        'ocrastd-regular': require('./assets/fonts/OCRASTD-Regular.ttf'),
+        'rajdhani-light': require('./assets/fonts/Rajdhani-Light.ttf'),
     });
 
     if (!fontsLoaded) {

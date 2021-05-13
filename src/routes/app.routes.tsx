@@ -10,6 +10,7 @@ import Main from '../pages/Main';
 import Search from '../pages/Search';
 import Result from '../pages/Result';
 import Remedy from '../pages/Remedy';
+import Message from '../pages/Message';
 
 import colors from '../style/colors';
 
@@ -78,6 +79,7 @@ const Routes: React.FC = () => (
             <App.Screen name="Menu" component={Menu} />
             <App.Screen name="Result" component={Result} />
             <App.Screen name="Remedy" component={Remedy} />
+            <App.Screen name="Message" component={Message} />
         </App.Navigator>
     </NavigationContainer>
 );

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+import { Modal, View } from 'react-native';
+
 import { Ionicons } from '@expo/vector-icons';
-import { useIsFocused } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import {
     Container,
     Header,
@@ -24,6 +26,22 @@ import {
     CartBar,
     NoItems,
     NoItemsTitle,
+    MiniCard,
+    MiniCardText,
+    ModalView,
+    ModalButton,
+    ModalButtonTitle,
+    Info,
+    Title,
+    PriceLabel,
+    Price,
+    Card,
+    NameLabel,
+    Number,
+    SecurityCode,
+    ValidationExpire,
+    PriceInfo,
+    CardInfo,
 } from './styles';
 
 import { useCart } from '../../context/Cart';
@@ -39,8 +57,20 @@ interface Data {
 
 const Remedy: React.FC = () => {
     const isFocused = useIsFocused();
+    const navigation = useNavigation();
+    const [modalVisible, setModalVisible] = useState(false);
+
     const { cart, setCart } = useCart([]);
     const [refresh, setRefresh] = useState(0);
+
+    const [total, setTotal] = useState(0);
+    const [name, setName] = useState('');
+    const [trademark, setTrademark] = useState('');
+
+    useEffect(() => {
+        sumProducts();
+        listProducts();
+    }, [isFocused, cart, refresh]);
 
     const increaseQuantity = (item: Data) => {
         cart.forEach(element => {
@@ -70,8 +100,6 @@ const Remedy: React.FC = () => {
         });
         setRefresh(refresh + 1);
     };
-
-    useEffect(() => {}, [isFocused, cart, refresh]);
 
     const renderItem = ({ item }) => (
         <Item>
@@ -113,6 +141,39 @@ const Remedy: React.FC = () => {
         </Item>
     );
 
+    const continuePayment = () => {
+        setModalVisible(!modalVisible);
+
+        navigation.navigate('Message');
+    };
+
+    const sumProducts = () => {
+        let aux = 0;
+        cart.forEach(element => {
+            if (element.cart > 1) {
+                aux += element.cart * parseFloat(element.price);
+            } else {
+                aux += parseFloat(element.price);
+            }
+        });
+
+        const finalValue = aux.toFixed(2).replace('.', ',');
+
+        setTotal(finalValue);
+    };
+
+    const listProducts = () => {
+        let auxName = '';
+        let auxTrademark = '';
+        cart.forEach(element => {
+            auxName = `${element.name}`;
+            auxTrademark = `${element.trademark}`;
+        });
+
+        setName(auxName);
+        setTrademark(auxTrademark);
+    };
+
     return (
         <Container>
             <Header>
@@ -127,9 +188,70 @@ const Remedy: React.FC = () => {
                     showsVerticalScrollIndicator={false}
                     ListFooterComponent={
                         <>
-                            <EnterButton>
+                            <MiniCard>
+                                <MiniCardText>
+                                    X X X X X X X X X X X
+                                </MiniCardText>
+                            </MiniCard>
+                            <EnterButton
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
                                 <EnterTitle>Pagamento</EnterTitle>
                             </EnterButton>
+                            <Modal
+                                transparent
+                                animationType="slide"
+                                visible={modalVisible}
+                            >
+                                <ModalView>
+                                    <Info>
+                                        <Title>{name}</Title>
+
+                                        <Title>{trademark}</Title>
+
+                                        <PriceInfo>
+                                            <PriceLabel>Total: </PriceLabel>
+
+                                            <Price>R$ {total}</Price>
+                                        </PriceInfo>
+
+                                        <Card>
+                                            <NameLabel>
+                                                Gabriel Monteiro
+                                            </NameLabel>
+
+                                            <CardInfo>
+                                                <ValidationExpire>
+                                                    03/29
+                                                </ValidationExpire>
+
+                                                <SecurityCode>120</SecurityCode>
+                                            </CardInfo>
+
+                                            <Number>1234 5678 1234 5678</Number>
+                                        </Card>
+                                    </Info>
+                                    <CardInfo>
+                                        <ModalButton
+                                            onPress={() =>
+                                                setModalVisible(!modalVisible)
+                                            }
+                                        >
+                                            <ModalButtonTitle>
+                                                Cancelar
+                                            </ModalButtonTitle>
+                                        </ModalButton>
+
+                                        <ModalButton
+                                            onPress={() => continuePayment()}
+                                        >
+                                            <ModalButtonTitle>
+                                                Pagar
+                                            </ModalButtonTitle>
+                                        </ModalButton>
+                                    </CardInfo>
+                                </ModalView>
+                            </Modal>
                         </>
                     }
                 />
@@ -141,6 +263,7 @@ const Remedy: React.FC = () => {
                     <NoItemsTitle>;/</NoItemsTitle>
                 </NoItems>
             )}
+            <View style={{ margin: 1 }} />
         </Container>
     );
 };

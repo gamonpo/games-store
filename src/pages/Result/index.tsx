@@ -65,6 +65,7 @@ import { useCart } from '../../context/Cart';
 
 interface Data {
     id: string;
+    name: string;
     img: string;
     trademark: string;
     price: string;
@@ -77,25 +78,28 @@ const Result = () => {
     const [data, setData] = useState<Data[]>([
         {
             id: '1',
+            name: 'Exalato de Escitaloplan',
             img: one,
             trademark: 'Eurofarma',
-            price: '34,90',
+            price: '34.90',
             delivery: '2 dia para entrega',
             cart: 1,
         },
         {
             id: '2',
+            name: 'Exalato de Escitaloplan',
             img: two,
             trademark: 'Medley',
-            price: '31,90',
+            price: '31.90',
             delivery: '2 dia para entrega',
             cart: 1,
         },
         {
             id: '3',
             img: three,
+            name: 'Exalato de Escitaloplan',
             trademark: 'Geolab',
-            price: '32,90',
+            price: '32.90',
             delivery: '2 dia para entrega',
             cart: 1,
         },
@@ -257,11 +261,7 @@ const Result = () => {
                             />
                         </LoadMore>
                         <EnterButton
-                            onPress={() =>
-                                navigation.navigate('Remedy', {
-                                    cart,
-                                })
-                            }
+                            onPress={() => navigation.navigate('Remedy')}
                         >
                             <EnterTitle>Pagamento</EnterTitle>
                         </EnterButton>

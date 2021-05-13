@@ -9,4 +9,7 @@ export default {
     color_badge: '#333333',
     color_item: '#E6E6E6',
     color_border: '#BABABA',
+    color_card: '#79EBFF',
+    color_mini_card: '#6FD3FF',
+    color_mini_card_border: '#DB9F1C',
 };

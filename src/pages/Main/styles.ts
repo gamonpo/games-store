@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import styled from 'styled-components/native';
 import Constants from 'expo-constants';
 import { Dimensions } from 'react-native';
