@@ -245,7 +245,10 @@ const Main = () => {
                         <ModalTitle>{selecteditem.name}</ModalTitle>
                         <ModalImage source={selecteditem.image} />
                         <ModalDescription>
-                            R$: {selecteditem.price}
+                            R$:
+                            {selecteditem.price
+                                ? selecteditem.price.replace('.', ',')
+                                : selecteditem.price}
                         </ModalDescription>
                         <Add onPress={() => addProduct(selecteditem)}>
                             <Icon name="plus" />
