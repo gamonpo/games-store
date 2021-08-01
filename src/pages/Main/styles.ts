@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from '@expo/vector-icons';
 
-import img from '../../assets/games/horizon-zero-dawn.png';
+import img from '../../assets/profile/photo.jpg';
 
 export const Container = styled.ScrollView`
     flex: 1;
