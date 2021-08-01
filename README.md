@@ -28,7 +28,9 @@
 ### Main
 
 ![](assets/home.png)
+
 ![](assets/main.png)
+
 ![](assets/addGame.png)
 
 ## Cart
