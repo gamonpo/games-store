@@ -6,7 +6,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
-import Home from '../pages/Home';
 import Main from '../pages/Main';
 import Cart from '../pages/Cart';
 
@@ -68,7 +67,6 @@ const Routes: React.FC = () => (
                 headerShown: false,
             }}
         >
-            {/* <App.Screen name="Home" component={Home} /> */}
             <App.Screen name="Menu" component={Menu} />
         </App.Navigator>
     </NavigationContainer>
