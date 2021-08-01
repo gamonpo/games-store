@@ -1,25 +1,27 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from 'react-native';
 import AppLoading from 'expo-app-loading';
+
 import {
     useFonts,
-    NothingYouCouldDo_400Regular,
-} from '@expo-google-fonts/nothing-you-could-do';
+    Quicksand_300Light,
+    Quicksand_400Regular,
+    Quicksand_500Medium,
+    Quicksand_700Bold,
+} from '@expo-google-fonts/quicksand';
 
+import { ThemeProvider } from 'styled-components';
 import Routes from './src/routes';
 
-import CartProvider from './src/context/Cart';
+import { CartProvider } from './src/hooks/Cart';
+import theme from './src/global/theme';
 
 const App: React.FC = () => {
-    const [fontsLoaded] = useFonts({
-        NothingYouCouldDo_400Regular,
-        'sora-regular': require('./assets/fonts/Sora-Regular.ttf'),
-        'sora-thin': require('./assets/fonts/Sora-Thin.ttf'),
-        'sora-bold': require('./assets/fonts/Sora-Bold.ttf'),
-        'sora-extralight': require('./assets/fonts/Sora-ExtraLight.ttf'),
-        'sora-semibold': require('./assets/fonts/Sora-SemiBold.ttf'),
-        'ocrastd-regular': require('./assets/fonts/OCRASTD-Regular.ttf'),
-        'rajdhani-light': require('./assets/fonts/Rajdhani-Light.ttf'),
+    let [fontsLoaded] = useFonts({
+        Quicksand_300Light,
+        Quicksand_400Regular,
+        Quicksand_500Medium,
+        Quicksand_700Bold,
     });
 
     if (!fontsLoaded) {
@@ -27,10 +29,13 @@ const App: React.FC = () => {
     }
 
     return (
-        <CartProvider>
-            <StatusBar style="auto" />
-            <Routes />
-        </CartProvider>
+        <ThemeProvider theme={theme}>
+            <StatusBar />
+
+            <CartProvider>
+                <Routes />
+            </CartProvider>
+        </ThemeProvider>
     );
 };
 

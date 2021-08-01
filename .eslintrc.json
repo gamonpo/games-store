@@ -26,6 +26,7 @@
         "prettier"
     ],
     "rules": {
+        "prefer-const": "off",
         "import/prefer-default-export": "off",
         "global-require": "off",
         "camelcase": "off",

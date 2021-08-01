@@ -1,4 +1,4 @@
-# farmcare
+# gamestore
 
 ## Requirements
 
@@ -12,7 +12,7 @@
 - Use yarn/npm to install dependencies;
 - Start the app with: 'expo start' or 'yarn start';
 - Compatible plataforms :
-  - Emulator: 
+  - Emulator:
     - Android Studio(https://developer.android.com/studio).
   - Smartphone:
     - Expo Client(install  from the store, open it and scan the 'QR Code').

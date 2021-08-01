@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "farmcare",
-    "slug": "farmcare",
+    "name": "games-store",
+    "slug": "games-store",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.gamonpo.farmcare"
+      "package": "com.gamonpo.gamestore"
     },
     "web": {
       "favicon": "./assets/favicon.png"
